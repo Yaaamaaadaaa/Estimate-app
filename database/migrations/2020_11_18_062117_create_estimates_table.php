@@ -15,13 +15,13 @@ class CreateEstimatesTable extends Migration
     {
         Schema::create('estimates', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 100);
-            $table->string('location', 100);
-            $table->string('transaction', 100);
-            $table->string('effectiveness', 100);
-            $table->string('customer', 100);
-            $table->date('deadline_at');
-            $table->date('estimated_at');
+            $table->string('title', 100)->nullable();
+            $table->string('location', 100)->nullable();
+            $table->string('transaction', 100)->nullable();
+            $table->string('effectiveness', 100)->nullable();
+            $table->string('customer', 100)->nullable();
+            $table->date('deadline_at')->nullable();
+            $table->date('estimated_at')->nullable();
             $table->timestamps();
         });
     }
