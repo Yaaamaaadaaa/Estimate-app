@@ -15,7 +15,6 @@ class CreateEstimatesTable extends Migration
     {
         Schema::create('estimates', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id')->unsigned();
             $table->string('title', 100);
             $table->string('location', 100);
             $table->string('transaction', 100);
@@ -24,8 +23,6 @@ class CreateEstimatesTable extends Migration
             $table->date('deadline_at');
             $table->date('estimated_at');
             $table->timestamps();
-
-            $table->foreign('item_id')->references('id')->on('items');
         });
     }
 

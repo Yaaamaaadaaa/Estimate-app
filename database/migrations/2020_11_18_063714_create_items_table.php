@@ -15,12 +15,15 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('estimate_id')->unsigned();
             $table->string('name', 100);
             $table->string('unit', 10);
             $table->integer('quenity');
             $table->integer('unit_price');
             $table->string('other', 100);
             $table->timestamps();
+
+            $table->foreign('estimate_id')->references('id')->on('estimates');
         });
     }
 
