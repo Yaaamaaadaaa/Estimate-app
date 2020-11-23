@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Estimate;
+use App\Item;
 use Illuminate\Http\Request;
 
 class EstimateController extends Controller
@@ -14,5 +15,10 @@ class EstimateController extends Controller
         return view('estimates/index', [
             'estimates' => $estimates,
         ]);
+    }
+
+    public function showCreateForm()
+    {
+        return view('estimates/create.vue');
     }
 }

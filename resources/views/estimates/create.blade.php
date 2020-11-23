@@ -1,3 +1,4 @@
+<template>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,39 +14,38 @@
   </nav>
 </header>
 <main>
-  <div class="container">
-    <div class="row">
-      <div class="col col-md-12">
-        <p class="text-center">
-          見積一覧
-        </p>
-        <table class="table table-bordered table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th class="col">タイトル</th>
-              <th class="col">見積もり期日</th>
-              <th class="col">場所</th>
-              <th class="col">宛先</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($estimates as $estimate)
-              <tr>
-                <td class="position-relative">
-                  <a href="{{ route('estimates.index', ['id' => $estimate->id]) }}" class="stretched-link">
-                    {{ $estimate->title }}
-                  </a>
-                </td>
-                <td>{{ $estimate->estimated_at }}</td>
-                <td>{{ $estimate->location }}</td>
-                <td>{{ $estimate->customer }}</td>
-              </tr>
-            @endforeach
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div id='app'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>価格</th>
+        <th>数量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Nintendo Switch</td>
+        <td>{{a}}</td>
+        <td>
+          <input class='form-control' type='number' v-model='b'>
+        </td>
+      </tr>
+      <tr>
+        <td>スプラトゥーン 2</td>
+        <td>{{c}}</td>
+        <td>
+          <input class='form-control' type='number' v-model='d'>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class='text-right'>
+    <p>  小計￥ {{sum}}</p>
+    <p>消費税￥ {{tax}}</p>
+    <p>  合計￥ {{sum + tax}}</p>
   </div>
+</div>
 </main>
 <footer class="fixed-bottom">
   <nav class="my-navbar">
@@ -61,8 +61,21 @@
     </div>
   </nav>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
+</template>
+
+<script>
+new Vue({
+    el: "#app",
+    data: { a: 43300, b: 1, c: 5566, d: 1},
+    computed: {
+      sum: function() { return this.a * this.b + this.c * this.d },
+      tax: function() { return Math.ceil(this.sum * 0.08) },
+    },
+  })
+</script>
