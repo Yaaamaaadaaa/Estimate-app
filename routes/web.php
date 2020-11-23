@@ -14,4 +14,4 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/estimates/', 'EstimateController@index')->name('estimates.index');
+Route::get('/estimates', 'EstimateController@index')->name('estimates.index');
