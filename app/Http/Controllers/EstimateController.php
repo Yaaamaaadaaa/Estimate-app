@@ -19,6 +19,6 @@ class EstimateController extends Controller
 
     public function showCreateForm()
     {
-        return view('estimates/create.vue');
+        return view('estimates/create');
     }
 }
