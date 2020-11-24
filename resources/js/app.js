@@ -25,14 +25,13 @@ const app = new Vue({
         items: [],
         new_item: []
     },
-    created() {
-        this.addItems();
-    },
     methods: {
-        addItems: function(){
-            axios.post('/api/create').then((res)=>{
-                this.items = res.items
-            });
+        append: function (event) {
+            v.$data.items.push({});
+            return false;
+        },
+        remove: function(index) {
+            this.items.splice(index, 1);
         }
     }
 });

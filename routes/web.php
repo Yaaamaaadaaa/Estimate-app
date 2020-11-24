@@ -17,6 +17,3 @@ Route::get('/', function () {
 Route::get('/estimates', 'EstimateController@index')->name('estimates.index');
 Route::get('/estimates/create', 'EstimateController@showCreateForm')->name('estimates.create');
 
-Route::group(['middleware' => 'api'], function(){
-    Route::get('create', 'ItemController@create');
-});

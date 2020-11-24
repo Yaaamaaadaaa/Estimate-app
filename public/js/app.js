@@ -14494,17 +14494,13 @@ var app = new Vue({
         items: [],
         new_item: []
     },
-    created: function created() {
-        this.addItems();
-    },
-
     methods: {
-        addItems: function addItems() {
-            var _this = this;
-
-            axios.post('/api/create').then(function (res) {
-                _this.items = res.items;
-            });
+        append: function append(event) {
+            v.$data.items.push({});
+            return false;
+        },
+        remove: function remove(index) {
+            this.items.splice(index, 1);
         }
     }
 });
