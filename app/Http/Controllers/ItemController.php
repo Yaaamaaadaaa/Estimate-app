@@ -24,20 +24,14 @@ class ItemController extends Controller
         $estimate = $request->input('estimate');
         $items = Item::where('estimate_id', $estimate)->get();
 
-        if ($items == null){
+        if ($items->isEmpty()) {
             $item = new Item();
-            $item->name = '新規作成';
             $item->estimate_id = $estimate;
             $item->save();
-
-            $items = Item::where('estimate_id', $estimate)->get();
-
-            return $items;
-
+            
+            return [$item];
         } else {
-
             return $items;
-
         }
     }
 }

@@ -32,7 +32,7 @@
             @foreach($estimates as $estimate)
               <tr>
                 <td class="position-relative">
-                  <a href="{{ route('estimates.index', ['id' => $estimate->id]) }}" class="stretched-link">
+                  <a href="{{ route('estimates.edit', ['estimate' => $estimate->id]) }}" class="stretched-link">
                     {{ $estimate->title }}
                   </a>
                 </td>
