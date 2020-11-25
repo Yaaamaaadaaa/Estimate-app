@@ -17,8 +17,20 @@ class EstimateController extends Controller
         ]);
     }
 
-    public function showCreateForm()
+    public function showEditForm(Estimate $estimate)
     {
-        return view('estimates/create');
+        return view('estimates/edit', [
+            'estimate' => $estimate,
+        ]);
+    }
+
+    public function create()
+    {
+        $estimate = new Estimate();
+        $estimate->save();
+
+        return redirect()->route('estimates.edit', [
+            'estimate' => $estimate->id,
+        ]);
     }
 }

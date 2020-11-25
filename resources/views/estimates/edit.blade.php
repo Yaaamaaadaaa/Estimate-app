@@ -23,52 +23,13 @@
           <th>単位</th>
           <th>数量</th>
           <th>単価</th>
-          <th>金額</th>
           <th>備考</th>
           <th>追加</th>
           <th>削除</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" :key="item.id">
-          <th>"item.name"</th>
-          <th>"item.unit"</th>
-          <th>"item.quenity"</th>
-          <th>"item.unit_price"</th>
-          <th>"price"</th>
-          <th>"item.other"</th>
-          <td>
-            <span v-on:click="append"><i class="fas fa-plus"></i></span>
-          </td>
-          <td>
-            <span v-on:click="remove"><i class="fas fa-trash-alt"></i></span>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-          <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-          <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-          <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-          <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-          <input id="new-item" v-on:keyup.enter="append" type="text">
-          </td>
-          <td>
-            <span v-on:click="append"><i class="fas fa-plus"></i></span>
-          </td>
-          <td>
-            <span v-on:click="append"><i class="fas fa-trash-alt"></i></span>
-          </td>
+        <tr is="item-table" v-for="(item, index) in items" v-bind:item="item" v-bind:key="item.id" v-bind:index="index">
         </tr>
       </tbody>
     </table>
@@ -78,11 +39,11 @@
   <nav class="my-navbar">
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
+        <div v-on:click="save_items" class="col-md-3">
           <a href="{{ route('estimates.create') }}">保存</a>
         </div>
         <div class="col-md-3 offset-md-6">
-          <a href="#">ログアウト</a>
+          <a href="#">削除</a>
         </div>
       </div>
     </div>
@@ -90,6 +51,7 @@
 </footer>
 <script src="{{ asset('js/app.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
