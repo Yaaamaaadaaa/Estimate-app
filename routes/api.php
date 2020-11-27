@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'api'], function(){
-    Route::get('get', 'ItemController@show');
+    Route::get('get', 'ItemController@get');
     Route::post('create', 'ItemController@create');
     Route::post('edit', 'ItemController@edit');
 });

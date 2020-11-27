@@ -19,7 +19,7 @@ class ItemController extends Controller
         return $items;
     }
 
-    public function show(Request $request)
+    public function get(Request $request)
     {
         $estimate = $request->input('estimate');
         $items = Item::where('estimate_id', $estimate)->get();
