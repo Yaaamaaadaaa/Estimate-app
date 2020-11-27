@@ -17,8 +17,10 @@ class EstimateController extends Controller
         ]);
     }
 
-    public function showEditForm(Estimate $estimate)
+    public function showEditForm(Request $request)
     {
+        $estimate_id = $request->input('estimate');
+        $estimate = Estimate::find($estimate_id);
         return view('estimates/edit', [
             'estimate' => $estimate,
         ]);

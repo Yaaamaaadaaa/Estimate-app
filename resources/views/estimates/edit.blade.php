@@ -11,11 +11,32 @@
 <body>
 <header>
   <nav class="my-navbar">
-    <a class="my-navbar-brand" href="/">見積作成アプリ</a>
+    <a class="my-navbar-brand" href="{{ route('estimates.index') }}">見積作成アプリ</a>
   </nav>
 </header>
 <main>
   <div id="app">
+    <div class="container">
+      <div class="row">
+        <div class="col-md">
+          <form id="estimate_information">
+            <input type="text" value="{{ $estimate->customer }}">様</input>
+          </form>
+          <p>税抜合計金額</p>
+          <p>消費税</p>
+          <p>御見積合計金額</p>
+        </div>
+        <div class="col_md">
+          <form id="estimate_information">
+            <p>件名:<input type="text" value="{{ $estimate->title }}" /></p>
+            <p>納入期限:<input type="text"></p>
+            <p>納入場所:<input type="text"></p>
+            <p>取引方法:<input type="text"></p>
+            <p>有効期限:<input type="text"></p>
+          </form>
+        </div>
+      </div>
+    </div>
     <table class="table table-bordered">
       <thead  class="thead-dark">
         <tr>
@@ -40,10 +61,14 @@
     <div class="container">
       <div class="row">
         <div v-on:click="save_items" class="col-md-3">
-          <a href="{{ route('estimates.create') }}">保存</a>
+          <button type="submit" form="estimate_information">
+            <a href="{{ route('estimates.create') }}">保存</a>
+          </button>
         </div>
         <div class="col-md-3 offset-md-6">
-          <a href="#">削除</a>
+          <button>
+            <a href="#">削除</a>
+          </button>
         </div>
       </div>
     </div>
