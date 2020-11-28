@@ -17,25 +17,51 @@
 <main>
   <div id="app">
     <div class="container">
-      <div class="row">
-        <div class="col-md">
-          <form id="estimate_information">
-            <input type="text" value="{{ $estimate->customer }}">様</input>
-          </form>
-          <p>税抜合計金額</p>
-          <p>消費税</p>
-          <p>御見積合計金額</p>
+      <form id="estimate_information" action="{{ route('estimates.edit', ['estimate' => $estimate->id]) }}" method="POST">
+        @csrf
+        <div class="row">
+          <div class="col">
+            <div class="form-group row">
+                <input type="text" name="customer" value="{{ $estimate->customer }}" class="form-control">
+            </div>
+            <p>税抜合計金額</p>
+            <p>消費税</p>
+            <p>御見積合計金額</p>
+          </div>
+          <div class="col">
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">件名:</label>
+              <div class="col-md-10">
+                <input type="text" name="title" value="{{ $estimate->title }}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">納入期限:</label>
+              <div class="col-md-10">
+                <input type="text" name="deadline_at" value="{{ $estimate->deadline_at }}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">納入場所:</label>
+              <div class="col-md-10">
+                <input type="text" name="location" value="{{ $estimate->location }}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">取引方法:</label>
+              <div class="col-md-10">
+                <input type="text" name="transaction" value="{{ $estimate->transaction }}" class="form-control">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-md-2 col-form-label">有効期限:</label>
+              <div class="col-md-10">
+                <input type="text" name="effectiveness" value="{{ $estimate->effectiveness }}" class="form-control">
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col_md">
-          <form id="estimate_information">
-            <p>件名:<input type="text" value="{{ $estimate->title }}" /></p>
-            <p>納入期限:<input type="text"></p>
-            <p>納入場所:<input type="text"></p>
-            <p>取引方法:<input type="text"></p>
-            <p>有効期限:<input type="text"></p>
-          </form>
-        </div>
-      </div>
+      </form>
     </div>
     <table class="table table-bordered">
       <thead  class="thead-dark">
@@ -56,19 +82,19 @@
     </table>
   </div>
 </main>
-<footer class="fixed-bottom">
+<footer class="fixed-bottom bg-dark">
   <nav class="my-navbar">
     <div class="container">
       <div class="row">
         <div v-on:click="save_items" class="col-md-3">
           <button type="submit" form="estimate_information">
-            <a href="{{ route('estimates.create') }}">保存</a>
+            保存
           </button>
         </div>
         <div class="col-md-3 offset-md-6">
-          <button>
-            <a href="#">削除</a>
-          </button>
+            <a href="#">
+              <button>削除</button>
+            </a>
         </div>
       </div>
     </div>

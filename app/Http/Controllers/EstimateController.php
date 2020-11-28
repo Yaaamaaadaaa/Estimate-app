@@ -21,9 +21,29 @@ class EstimateController extends Controller
     {
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
+
         return view('estimates/edit', [
             'estimate' => $estimate,
         ]);
+    }
+
+    public function edit(Request $request)
+    {
+        $estimate_id = $request->input('estimate');
+        $current_estimate = Estimate::find($estimate_id);
+
+        $current_estimate->title = $request->title;
+        $current_estimate->location = $request->location;
+        $current_estimate->transaction = $request->transaction;
+        $current_estimate->effectiveness = $request->effectiveness;
+        $current_estimate->customer = $request->customer;
+        $current_estimate->deadline_at = $request->deadline_at;
+        $current_estimate->estimated_at = $request->estimated_at;
+
+        $current_estimate->save();
+
+        return redirect()->route('estimates.index');
+
     }
 
     public function create()

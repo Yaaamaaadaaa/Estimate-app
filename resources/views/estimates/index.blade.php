@@ -19,7 +19,7 @@
         <p class="text-center">
           見積一覧
         </p>
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover" style="table-layout:fixed;">
           <thead class="thead-dark">
             <tr>
               <th class="col">タイトル</th>
@@ -47,15 +47,19 @@
     </div>
   </div>
 </main>
-<footer class="fixed-bottom">
+<footer class="fixed-bottom bg-dark">
   <nav class="my-navbar">
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <a href="{{ route('estimates.create') }}">新規作成</a>
+          <a href="{{ route('estimates.create') }}">
+            <button>新規作成</button>
+            </a>
         </div>
         <div class="col-md-3 offset-md-6">
-          <a href="#">ログアウト</a>
+          <a href="#">
+          <button>ログアウト</button>
+          </a>
         </div>
       </div>
     </div>
