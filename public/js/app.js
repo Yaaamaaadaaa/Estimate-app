@@ -31659,19 +31659,6 @@ window.Vue = __webpack_require__(35);
  */
 
 Vue.component('example-component', __webpack_require__(39));
-Vue.component('item-table', {
-    template: '<tr>\n                  <td>\n                    <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">\n                  </td>\n                  <td>\n                    <input type="text" class="form-control" v-model="item.unit">\n                  </td>\n                  <td>\n                    <input type="text" class="form-control" v-model="item.quenity">\n                  </td>\n                  <td>\n                    <input type="text" class="form-control" v-model="item.unit_price">\n                  </td>\n                  <td>\n                    <input type="text" class="form-control" v-model="item.other">\n                  </td>\n                  <td>\n                    <span v-on:click="append"><i class="fas fa-plus"></i></span>\n                  </td>\n                  <td>\n                  <span v-on:click="remove"><i class="fas fa-trash-alt"></i></span>\n                  </td>\n                </tr>',
-    props: ['item', 'index'],
-    methods: {
-        append: function append(event) {
-            app.$data.items.push({});
-            return false;
-        },
-        remove: function remove(event) {
-            app.$data.item.splice(-1);
-        }
-    }
-});
 
 var app = new Vue({
     el: '#app',
@@ -31687,10 +31674,17 @@ var app = new Vue({
         });
     },
     methods: {
-        save_items: function save_items() {
-            Axios.post('/api/create', {
-                name: this.name
-            });
+        append: function append(event) {
+            this.items.push({});
+        },
+        saveItems: function saveItems() {
+            var _this2 = this;
+
+            var query = window.location.search.slice(1);
+            var convert = Object.assign({}, this.items);
+            Axios.post('/api/create?' + query, { items: convert }).then(function (response) {
+                return _this2.items = response.data;
+            });;
         }
     }
 });

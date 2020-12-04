@@ -14,8 +14,8 @@
     <a class="my-navbar-brand" href="{{ route('estimates.index') }}">見積作成アプリ</a>
   </nav>
 </header>
-<main>
-  <div id="app">
+<div id="app">
+  <main>
     <div class="container">
       <form id="estimate_information" action="{{ route('estimates.edit', ['estimate' => $estimate->id]) }}" method="POST">
         @csrf
@@ -76,30 +76,51 @@
         </tr>
       </thead>
       <tbody>
-        <tr is="item-table" v-for="(item, index) in items" v-bind:item="item" v-bind:key="item.id" v-bind:index="index">
+        <tr v-for="item in items" v-bind:key="item.id">
+        <td>
+      <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">
+    </td>
+    <td>
+      <input type="text" class="form-control" v-model="item.unit">
+    </td>
+    <td>
+      <input type="text" class="form-control" v-model="item.quenity">
+    </td>
+    <td>
+      <input type="text" class="form-control" v-model="item.unit_price">
+    </td>
+    <td>
+      <input type="text" class="form-control" v-model="item.other">
+    </td>
+    <td>
+      <span v-on:click="append"><i class="fas fa-plus"></i></span>
+    </td>
+    <td>
+      <i class="fas fa-trash-alt"></i>
+    </td>
         </tr>
       </tbody>
     </table>
-  </div>
-</main>
-<footer class="fixed-bottom bg-dark">
-  <nav class="my-navbar">
-    <div class="container">
-      <div class="row">
-        <div v-on:click="save_items" class="col-md-3">
-          <button type="submit" form="estimate_information">
-            保存
-          </button>
-        </div>
-        <div class="col-md-3 offset-md-6">
+  </main>
+  <footer class="fixed-bottom bg-dark">
+    <nav class="my-navbar">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <button @click="saveItems">
+              保存
+            </button>
+          </div>
+          <div class="col-md-3 offset-md-6">
             <a href="#">
               <button>削除</button>
             </a>
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
-</footer>
+    </nav>
+  </footer>
+</div>
 <script src="{{ asset('js/app.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
