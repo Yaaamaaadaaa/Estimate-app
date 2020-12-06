@@ -31663,7 +31663,8 @@ Vue.component('example-component', __webpack_require__(39));
 var app = new Vue({
     el: '#app',
     data: {
-        items: []
+        items: [],
+        deleted_items: []
     },
     mounted: function mounted() {
         var _this = this;
@@ -31677,14 +31678,22 @@ var app = new Vue({
         append: function append(event) {
             this.items.push({});
         },
+        remove: function remove(id, index) {
+            console.log(id);
+            this.deleted_items.push(id);
+            this.items.splice(index, 1);
+            console.log(this.deleted_items);
+        },
         saveItems: function saveItems() {
             var _this2 = this;
 
             var query = window.location.search.slice(1);
-            var convert = Object.assign({}, this.items);
-            Axios.post('/api/create?' + query, { items: convert }).then(function (response) {
+            var add_items = Object.assign({}, this.items);
+            var remove_items = Object.assign({}, this.deleted_items);
+            this.deleted_items = [];
+            Axios.post('/api/create?' + query, { items: add_items, delete_items: remove_items }).then(function (response) {
                 return _this2.items = response.data;
-            });;
+            });
         }
     }
 });

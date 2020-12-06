@@ -76,28 +76,28 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in items" v-bind:key="item.id">
-        <td>
-      <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">
-    </td>
-    <td>
-      <input type="text" class="form-control" v-model="item.unit">
-    </td>
-    <td>
-      <input type="text" class="form-control" v-model="item.quenity">
-    </td>
-    <td>
-      <input type="text" class="form-control" v-model="item.unit_price">
-    </td>
-    <td>
-      <input type="text" class="form-control" v-model="item.other">
-    </td>
-    <td>
-      <span v-on:click="append"><i class="fas fa-plus"></i></span>
-    </td>
-    <td>
-      <i class="fas fa-trash-alt"></i>
-    </td>
+        <tr v-for="(item, index) in items" v-bind:key="item.id">
+          <td>
+            <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">
+          </td>
+          <td>
+            <input type="text" class="form-control" v-model="item.unit">
+          </td>
+          <td>
+            <input type="text" class="form-control" v-model="item.quenity">
+          </td>
+          <td>
+            <input type="text" class="form-control" v-model="item.unit_price">
+          </td>
+          <td>
+            <input type="text" class="form-control" v-model="item.other">
+          </td>
+          <td>
+            <span v-on:click="append"><i class="fas fa-plus"></i></span>
+          </td>
+          <td>
+            <span v-on:click="remove(item.id, index)"><i class="fas fa-trash-alt"></i></span>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -107,7 +107,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3">
-            <button @click="saveItems">
+            <button type="submit" form="estimate_information" @click="saveItems">
               保存
             </button>
           </div>

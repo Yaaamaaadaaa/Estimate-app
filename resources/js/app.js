@@ -23,7 +23,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 const app = new Vue({
     el: '#app',
     data: {
-        items: []
+        items: [],
+        deleted_items: []
     },
     mounted: function(){
         var query = window.location.search.slice(1); 
@@ -33,10 +34,19 @@ const app = new Vue({
         append: function(event) {
             this.items.push({});
         },
+        remove: function(id, index) {
+            console.log(id);
+            this.deleted_items.push(id);
+            this.items.splice(index, 1);
+            console.log(this.deleted_items);
+        },
         saveItems: function() {
             var query = window.location.search.slice(1); 
-            var convert = Object.assign({},this.items);
-            Axios.post('/api/create?' + query, {items: convert}).then(response => this.items = response.data);;
+            var add_items = Object.assign({},this.items);
+            var remove_items = Object.assign({},this.deleted_items);
+            this.deleted_items = [];
+            Axios.post('/api/create?' + query, {items: add_items, delete_items: remove_items}).then(response => this.items = response.data);
+
         }
     }
 });

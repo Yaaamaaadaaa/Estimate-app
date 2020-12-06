@@ -14,6 +14,13 @@ class ItemController extends Controller
 
         $items = $request->items;
 
+        $delete_items_id = $request->delete_items;
+
+        for($i=0; $i<count($delete_items_id); $i++){
+            $delete_item = Item::find($delete_items_id[$i]);
+            $delete_item->delete();
+        }
+
         for($i=0; $i<count($items); $i++) {
             if (!empty($items[$i]['id'])) {
                 $current_item = Item::find($items[$i]['id']);

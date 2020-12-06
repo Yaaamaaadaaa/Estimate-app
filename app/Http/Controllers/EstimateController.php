@@ -42,7 +42,9 @@ class EstimateController extends Controller
 
         $current_estimate->save();
 
-        return redirect()->route('estimates.index');
+        return redirect()->route('estimates.edit', [
+            'estimate' => $estimate_id
+        ]);
 
     }
 
