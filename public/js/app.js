@@ -31674,7 +31674,21 @@ var app = new Vue({
             return _this.items = response.data;
         });
     },
+    computed: {
+        listItems: function listItems() {
+            return this.items.sort(function (a, b) {
+                return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+            });;
+        }
+    },
     methods: {
+        itemPrice: function itemPrice(quantity, unit_price) {
+            if (quantity && unit_price) {
+                return quantity * unit_price;
+            } else {
+                return 0;
+            }
+        },
         append: function append(event) {
             this.items.push({});
         },

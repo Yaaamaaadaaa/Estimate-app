@@ -30,7 +30,21 @@ const app = new Vue({
         var query = window.location.search.slice(1); 
         Axios.get('/api/get?' + query).then(response => this.items = response.data);
     },
+    computed: {
+        listItems: function(){
+            return this.items.sort((a, b) => {
+                return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
+              });;
+        },
+    },
     methods: {
+        itemPrice: function(quantity, unit_price){
+            if(quantity && unit_price) {
+                return quantity * unit_price;
+            } else {
+                return 0;
+            }
+        },
         append: function(event) {
             this.items.push({});
         },

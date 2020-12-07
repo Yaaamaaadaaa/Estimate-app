@@ -70,13 +70,14 @@
           <th>単位</th>
           <th>数量</th>
           <th>単価</th>
+          <th>金額</th>
           <th>備考</th>
           <th>追加</th>
           <th>削除</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in items" v-bind:key="item.id">
+        <tr v-for="(item, index) in listItems" :key="item.id">
           <td>
             <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">
           </td>
@@ -88,6 +89,9 @@
           </td>
           <td>
             <input type="text" class="form-control" v-model="item.unit_price">
+          </td>
+          <td>
+            <input type="text" class="form-control" :value="itemPrice(item.quenity, item.unit_price)">
           </td>
           <td>
             <input type="text" class="form-control" v-model="item.other">
