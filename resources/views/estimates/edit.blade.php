@@ -24,9 +24,9 @@
             <div class="form-group row">
                 <input type="text" name="customer" value="{{ $estimate->customer }}" class="form-control">
             </div>
-            <p>税抜合計金額</p>
-            <p>消費税</p>
-            <p>御見積合計金額</p>
+            <p>税抜合計金額:<input type="text" class="form-control" :value="totalPrice"></p>
+            <p>消費税:<input type="text" class="form-control" :value="taxPrice"></p>
+            <p>御見積合計金額:<input type="text" class="form-control" :value="totalPriceWithTax"></p>
           </div>
           <div class="col">
             <div class="form-group row">
@@ -79,7 +79,7 @@
       <tbody>
         <tr v-for="(item, index) in listItems" :key="item.id">
           <td>
-            <input type="text" class="form-control" v-model="item.name" v-on:keyup.enter="append">
+            <input type="text" class="form-control" v-model="item.name" @keyup.enter="append">
           </td>
           <td>
             <input type="text" class="form-control" v-model="item.unit">
@@ -91,16 +91,16 @@
             <input type="text" class="form-control" v-model="item.unit_price">
           </td>
           <td>
-            <input type="text" class="form-control" :value="itemPrice(item.quenity, item.unit_price)">
+            <input type="text" class="form-control" :value="itemPrice(item.quenity, item.unit_price, index)">
           </td>
           <td>
             <input type="text" class="form-control" v-model="item.other">
           </td>
           <td>
-            <span v-on:click="append"><i class="fas fa-plus"></i></span>
+            <span @click="append"><i class="fas fa-plus"></i></span>
           </td>
           <td>
-            <span v-on:click="remove(item.id, index)"><i class="fas fa-trash-alt"></i></span>
+            <span @click="remove(item.id, index)"><i class="fas fa-trash-alt"></i></span>
           </td>
         </tr>
       </tbody>

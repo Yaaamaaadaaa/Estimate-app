@@ -31664,6 +31664,7 @@ var app = new Vue({
     el: '#app',
     data: {
         items: [],
+        items_price: [],
         deleted_items: []
     },
     mounted: function mounted() {
@@ -31678,25 +31679,36 @@ var app = new Vue({
         listItems: function listItems() {
             return this.items.sort(function (a, b) {
                 return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-            });;
+            });
+        },
+        totalPrice: function totalPrice() {
+            return this.items_price.reduce(function (sum, element) {
+                return sum + element;
+            }, 0);
+        },
+        taxPrice: function taxPrice() {
+            return this.totalPrice * 0.08;
+        },
+        totalPriceWithTax: function totalPriceWithTax() {
+            return this.totalPrice + this.taxPrice;
         }
     },
     methods: {
-        itemPrice: function itemPrice(quantity, unit_price) {
+        itemPrice: function itemPrice(quantity, unit_price, index) {
+            var calculationPrice = 0;
             if (quantity && unit_price) {
-                return quantity * unit_price;
-            } else {
-                return 0;
+                calculationPrice = quantity * unit_price;
             }
+            this.items_price.splice(index, 1, calculationPrice);
+            return calculationPrice;
         },
         append: function append(event) {
             this.items.push({});
+            console.log(this.totalPrice);
         },
         remove: function remove(id, index) {
-            console.log(id);
             this.deleted_items.push(id);
             this.items.splice(index, 1);
-            console.log(this.deleted_items);
         },
         saveItems: function saveItems() {
             var _this2 = this;

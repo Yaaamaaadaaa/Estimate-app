@@ -24,6 +24,7 @@ const app = new Vue({
     el: '#app',
     data: {
         items: [],
+        items_price: [],
         deleted_items: []
     },
     mounted: function(){
@@ -34,25 +35,36 @@ const app = new Vue({
         listItems: function(){
             return this.items.sort((a, b) => {
                 return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
-              });;
+              });
         },
+        totalPrice: function(){
+            return this.items_price.reduce(function(sum, element){
+                return sum + element;
+            }, 0);
+        },
+        taxPrice: function(){
+            return this.totalPrice * 0.08;
+        },
+        totalPriceWithTax: function() {
+            return this.totalPrice + this.taxPrice;
+        }
     },
     methods: {
-        itemPrice: function(quantity, unit_price){
+        itemPrice: function(quantity, unit_price, index) {
+            let calculationPrice = 0;
             if(quantity && unit_price) {
-                return quantity * unit_price;
-            } else {
-                return 0;
+                calculationPrice = quantity * unit_price;
             }
+            this.items_price.splice(index, 1, calculationPrice);
+            return calculationPrice;
         },
         append: function(event) {
             this.items.push({});
+            console.log(this.totalPrice);
         },
         remove: function(id, index) {
-            console.log(id);
             this.deleted_items.push(id);
             this.items.splice(index, 1);
-            console.log(this.deleted_items);
         },
         saveItems: function() {
             var query = window.location.search.slice(1); 
