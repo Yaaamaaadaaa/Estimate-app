@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
             $table->integer('estimate_id')->unsigned();
             $table->string('name', 100)->nullable();
             $table->string('unit', 10)->nullable();
-            $table->integer('quenity')->nullable();
+            $table->integer('quantity')->nullable();
             $table->integer('unit_price')->nullable();
             $table->string('other', 100)->nullable();
             $table->timestamps();

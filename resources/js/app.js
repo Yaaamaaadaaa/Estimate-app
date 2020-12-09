@@ -5,6 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: Axios } = require('axios');
+const { iteratee } = require('lodash');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -18,5 +21,65 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        items: [],
+        items_price: [],
+        deleted_items: []
+    },
+    mounted: function(){
+        var query = window.location.search.slice(1); 
+        Axios.get('/api/get?' + query).then(response => this.items = response.data);
+    },
+    computed: {
+        listItems: function(){
+            return this.items.sort((a, b) => {
+                return (a.id < b.id) ? -1 : (a.id > b.id) ? 1 : 0;
+              });
+        },
+        totalPrice: function(){
+            return this.items_price.reduce(function(sum, element){
+                return sum + element;
+            }, 0);
+        },
+        taxPrice: function(){
+            let tax = this.totalPrice * 0.1;
+            return Math.floor(tax);
+        },
+        totalPriceWithTax: function() {
+            return this.totalPrice + this.taxPrice;
+        }
+    },
+    filters: {
+        priceLocaleString: function(value) {
+            if(value){
+                return value.toLocaleString();
+            }
+        }
+    },
+    methods: {
+        itemPrice: function(quantity, unit_price, index) {
+            let calculationPrice = 0;
+            if(quantity && unit_price) {
+                calculationPrice = quantity * unit_price;
+            }
+            this.items_price.splice(index, 1, calculationPrice);
+            return calculationPrice;
+        },
+        append: function(event) {
+            this.items.push({});
+        },
+        remove: function(id, index) {
+            this.deleted_items.push(id);
+            this.items.splice(index, 1);
+        },
+        saveItems: function() {
+            var query = window.location.search.slice(1); 
+            var add_items = Object.assign({},this.items);
+            var remove_items = Object.assign({},this.deleted_items);
+            this.deleted_items = [];
+            Axios.post('/api/create?' + query, {items: add_items, delete_items: remove_items}).then(response => this.items = response.data);
+
+        }
+    }
 });
