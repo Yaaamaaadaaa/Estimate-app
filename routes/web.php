@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Auth::routes();
 Route::get('/estimates', 'EstimateController@index')->name('estimates.index');
 Route::get('/estimates/edit', 'EstimateController@showEditForm')->name('estimates.edit');
 Route::post('/estimates/edit', 'EstimateController@edit');
