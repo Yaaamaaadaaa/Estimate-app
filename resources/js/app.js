@@ -43,10 +43,18 @@ const app = new Vue({
             }, 0);
         },
         taxPrice: function(){
-            return this.totalPrice * 0.08;
+            let tax = this.totalPrice * 0.1;
+            return Math.floor(tax);
         },
         totalPriceWithTax: function() {
             return this.totalPrice + this.taxPrice;
+        }
+    },
+    filters: {
+        priceLocaleString: function(value) {
+            if(value){
+                return value.toLocaleString();
+            }
         }
     },
     methods: {
@@ -60,7 +68,6 @@ const app = new Vue({
         },
         append: function(event) {
             this.items.push({});
-            console.log(this.totalPrice);
         },
         remove: function(id, index) {
             this.deleted_items.push(id);

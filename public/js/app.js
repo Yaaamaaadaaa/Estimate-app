@@ -31687,10 +31687,18 @@ var app = new Vue({
             }, 0);
         },
         taxPrice: function taxPrice() {
-            return this.totalPrice * 0.08;
+            var tax = this.totalPrice * 0.1;
+            return Math.floor(tax);
         },
         totalPriceWithTax: function totalPriceWithTax() {
             return this.totalPrice + this.taxPrice;
+        }
+    },
+    filters: {
+        priceLocaleString: function priceLocaleString(value) {
+            if (value) {
+                return value.toLocaleString();
+            }
         }
     },
     methods: {
@@ -31704,7 +31712,6 @@ var app = new Vue({
         },
         append: function append(event) {
             this.items.push({});
-            console.log(this.totalPrice);
         },
         remove: function remove(id, index) {
             this.deleted_items.push(id);

@@ -24,9 +24,9 @@
             <div class="form-group row">
                 <input type="text" name="customer" value="{{ $estimate->customer }}" class="form-control">
             </div>
-            <p>税抜合計金額:<input type="text" class="form-control" :value="totalPrice"></p>
-            <p>消費税:<input type="text" class="form-control" :value="taxPrice"></p>
-            <p>御見積合計金額:<input type="text" class="form-control" :value="totalPriceWithTax"></p>
+            <p>税抜合計金額:<input type="text" class="form-control" :value="totalPrice | priceLocaleString"></p>
+            <p>消費税:<input type="text" class="form-control" :value="taxPrice | priceLocaleString"></p>
+            <p>御見積合計金額:<input type="text" class="form-control" :value="totalPriceWithTax | priceLocaleString"></p>
           </div>
           <div class="col">
             <div class="form-group row">
@@ -91,7 +91,7 @@
             <input type="text" class="form-control" v-model="item.unit_price">
           </td>
           <td>
-            <input type="text" class="form-control" :value="itemPrice(item.quenity, item.unit_price, index)">
+            <input type="text" class="form-control" :value="itemPrice(item.quenity, item.unit_price, index) | priceLocaleString">
           </td>
           <td>
             <input type="text" class="form-control" v-model="item.other">
