@@ -41,7 +41,7 @@ return [
     'email'                => ':attribute には有効な形式のメールアドレスを入力してください。',
     'exists'               => 'The selected :attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
-    'filled'               => 'The :attribute field must have a value.',
+    'filled'               => 'メールアドレスまたはパスワードに誤りがあります。',
     'gt'                   => [
         'numeric' => 'The :attribute must be greater than :value.',
         'file'    => 'The :attribute must be greater than :value kilobytes.',
