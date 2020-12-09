@@ -27,7 +27,7 @@ class ItemController extends Controller
                 
                 $current_item->name = $items[$i]['name'];
                 $current_item->unit = $items[$i]['unit'];
-                $current_item->quenity = $items[$i]['quenity'];
+                $current_item->quantity = $items[$i]['quantity'];
                 $current_item->unit_price = $items[$i]['unit_price'];
                 $current_item->other = $items[$i]['other'];
                 $current_item->save();
@@ -37,7 +37,7 @@ class ItemController extends Controller
                 if(!empty($items[$i]['name'])) $new_item->name = $items[$i]['name'];
                 $new_item->estimate_id = $estimate;
                 if(!empty($items[$i]['unit'])) $new_item->unit = $items[$i]['unit'];
-                if(!empty($items[$i]['quenity'])) $new_item->quenity = $items[$i]['quenity'];
+                if(!empty($items[$i]['quantity'])) $new_item->quantity = $items[$i]['quantity'];
                 if(!empty($items[$i]['unit_price'])) $new_item->unit_price = $items[$i]['unit_price'];
                 if(!empty($items[$i]['other'])) $new_item->other = $items[$i]['other'];
                 $new_item->save();
@@ -54,7 +54,13 @@ class ItemController extends Controller
 
         if ($items->isEmpty()) {
             $item = new Item();
+
             $item->estimate_id = $estimate;
+            $item->name = null;
+            $item->unit = null;
+            $item->quantity = null;
+            $item->unit_price = null;
+            $item->other = null;
             $item->save();
             
             return [$item];
