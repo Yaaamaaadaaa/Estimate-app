@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col col-md-12">
-        <p class="text-center">見積一覧</p>
+        <h2 class="text-center" style="padding-top:25px">見積一覧</h2>
         <table class="table table-bordered table-hover" style="table-layout:fixed;">
           <thead class="thead-dark">
             <tr>
@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-3 offset-md-6">
           <a href="#">
-            <button>ログアウト</button>
+            <button>プロフィール設定</button>
           </a>
         </div>
       </div>

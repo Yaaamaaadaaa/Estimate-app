@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col col-md-offset-3 col-md-6">
         <nav class="panel panel-default">
-          <div class="panel-heading">ログイン</div>
+          <h2 class="panel-heading" style="padding-top:25px">ログイン</h2>
           <div class="panel-body">
             @if($errors->any())
               <div class="alert alert-danger">
@@ -25,16 +25,16 @@
                 <input type="password" class="form-control" id="password" name="password" />
               </div>
               <div class="text-right">
-                <button type="submit">送信</button>
+                <button type="submit" class="btn btn-dark">送信</button>
               </div>
             </form>
           </div>
         </nav>
-        <div class="text-center">
-          <a href="{{ route('login.guest') }}"><button>ゲストユーザーとしてログイン</button></a>
+        <div class="text-center" style="padding-top:25px">
+          <a href="{{ route('login.guest') }}"><button class="btn btn-dark">ゲストユーザーとしてログイン</button></a>
         </div>
-        <div class="text-center">
-          <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
+        <div class="text-center" style="padding-top:25px">
+          <a href="{{ route('password.request') }}"><button class="btn btn-dark">パスワードの変更はこちらから</button></a>
         </div>
       </div>
     </div>

@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Estimate;
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EstimateController extends Controller
 {
     public function index()
     {
-        $estimates = Estimate::all();
+        $estimates = Auth::user()->estimates()->get();
 
         return view('estimates/index', [
             'estimates' => $estimates,
@@ -51,7 +52,7 @@ class EstimateController extends Controller
     public function create()
     {
         $estimate = new Estimate();
-        $estimate->save();
+        Auth::user()->estimates()->save($estimate);
 
         return redirect()->route('estimates.edit', [
             'estimate' => $estimate->id,

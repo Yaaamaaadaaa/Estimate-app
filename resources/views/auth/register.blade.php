@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col col-md-offset-3 col-md-6">
         <nav class="panel panel-default">
-          <div class="panel-heading">会員登録</div>
+          <h2 class="panel-heading" style="padding-top:25px">会員登録</h2>
           <div class="panel-body">
             @if($errors->any())
               <div class="alert alert-danger">
@@ -33,11 +33,11 @@
                 <input type="password" class="form-control" id="password-confirm" name="password_confirmation">
               </div>
               <div class="text-right">
-                <button type="submit" class="btn btn-primary">送信</button>
+                <button type="submit" class="btn btn-dark">送信</button>
               </div>
             </form>
             <div class="text-center">
-              <a href="{{ route('login.guest') }}"><button>ゲストユーザーとしてログイン</button></a>
+              <a href="{{ route('login.guest') }}"><button class="btn btn-dark">ゲストユーザーとしてログイン</button></a>
             </div>
           </div>
         </nav>

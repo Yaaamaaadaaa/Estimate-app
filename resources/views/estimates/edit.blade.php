@@ -97,12 +97,17 @@
       <nav class="my-navbar">
         <div class="container">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <button type="submit" form="estimate_information" @click="saveItems">
                 保存
               </button>
             </div>
-            <div class="col-md-3 offset-md-6">
+            <div class="col-md-4">
+              <button type="submit" form="estimate_information" @click="saveItems">
+                保存して見積一覧に戻る
+              </button>
+            </div>
+            <div class="col-md-4">
               <a href="#">
                 <button>削除</button>
               </a>
