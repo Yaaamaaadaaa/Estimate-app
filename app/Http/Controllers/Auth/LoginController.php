@@ -36,4 +36,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function guestLogin()
+    {
+        $email = 'dummy@email.com';
+        $password = 'test1234';
+
+        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect()->route('estimates.index');
+        }
+
+        return redirect('/login');
+    }
 }
