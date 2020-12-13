@@ -13,12 +13,15 @@ class EstimateTableSeeder extends Seeder
      */
     public function run()
     {
+        $user = DB::table('users')->first();
+
         $titles = ['青森', '弘前', '八戸'];
         $customers = ['seikoh', 'kakuhiro', 'yoshida'];
 
         foreach (array_map(NULL, $titles, $customers) as [ $title, $customer ]) {
             DB::table('estimates')->insert([
                 'title' => $title,
+                'user_id' => $user->id,
                 'customer' => $customer,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

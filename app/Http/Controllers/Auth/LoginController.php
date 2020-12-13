@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/estimates';
 
     /**
      * Create a new controller instance.
@@ -35,5 +35,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function loggedOut(\Illuminate\Http\Request $request)
+    {
+        return redirect('/login');
+    }
+
+    public function guestLogin()
+    {
+        $email = 'dummy@email.com';
+        $password = 'test1234';
+
+        if (\Auth::attempt(['email' => $email, 'password' => $password])) {
+            return redirect()->route('estimates.index');
+        }
+
+        return redirect('/login');
     }
 }

@@ -11,12 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Auth::routes();
+Route::get('/login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/estimates', 'EstimateController@index')->name('estimates.index');
+    Route::get('/estimates/edit', 'EstimateController@showEditForm')->name('estimates.edit');
+    Route::post('/estimates/edit', 'EstimateController@edit');
+    Route::get('/estimates/create', "EstimateController@create")->name('estimates.create');
+    Route::post('/estimates/create', "EstimateController@create");
 });
-Route::get('/estimates', 'EstimateController@index')->name('estimates.index');
-Route::get('/estimates/edit', 'EstimateController@showEditForm')->name('estimates.edit');
-Route::post('/estimates/edit', 'EstimateController@edit');
-Route::get('/estimates/create', "EstimateController@create")->name('estimates.create');
-Route::post('/estimates/create', "EstimateController@create");
 
