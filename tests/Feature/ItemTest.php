@@ -6,16 +6,8 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class EstimateTest extends TestCase
+class ItemTest extends TestCase
 {
-    use RefreshDatabase;
-
-    public function setUp()
-    {
-        parent::setUp();
-
-        $this->seed('EstimateTableSeeder');
-    }
     /**
      * A basic feature test example.
      *
