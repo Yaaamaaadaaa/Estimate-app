@@ -103,9 +103,9 @@
               </button>
             </div>
             <div class="col-md-4">
-              <button type="submit" form="estimate_information" @click="saveItems">
-                保存して見積一覧に戻る
-              </button>
+            <a href="{{ route('estimates.index') }}">
+              <button>見積一覧に戻る</button>
+            </a>
             </div>
             <div class="col-md-4">
               <a href="#">
