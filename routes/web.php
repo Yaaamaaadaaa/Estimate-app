@@ -20,5 +20,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/estimates/edit', 'EstimateController@edit');
     Route::get('/estimates/create', "EstimateController@create")->name('estimates.create');
     Route::post('/estimates/create', "EstimateController@create");
+    Route::get('/estimates/pdf', 'PDFcontroller@index')->name('pdf.index');
 });
 

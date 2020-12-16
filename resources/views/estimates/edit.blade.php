@@ -97,17 +97,22 @@
       <nav class="my-navbar">
         <div class="container">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <button type="submit" form="estimate_information" @click="saveItems">
                 保存
               </button>
             </div>
-            <div class="col-md-4">
-            <a href="{{ route('estimates.index') }}">
-              <button>見積一覧に戻る</button>
-            </a>
+            <div class="col-md-3">
+              <a href="{{ route('pdf.index', ['estimate' => $estimate->id]) }}" onclick="window.open(this.href, '_blank'); return false;">
+                <button>印刷</button>
+              </a>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
+              <a href="{{ route('estimates.index') }}">
+                <button>見積一覧に戻る</button>
+              </a>
+            </div>
+            <div class="col-md-3">
               <a href="#">
                 <button>削除</button>
               </a>
