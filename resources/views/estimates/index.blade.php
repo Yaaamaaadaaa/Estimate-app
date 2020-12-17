@@ -44,7 +44,7 @@
           </a>
         </div>
         <div class="col-md-3 offset-md-6">
-          <a href="#">
+          <a href="{{ route('user.edit') }}">
             <button>プロフィール設定</button>
           </a>
         </div>

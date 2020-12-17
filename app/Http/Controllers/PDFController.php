@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Estimate;
 use App\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class PDFController extends Controller
 {
     public function index(Request $request){
+        $user = Auth::user();
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
         $items = Item::where('estimate_id', $estimate_id)->get();
@@ -22,9 +24,10 @@ class PDFController extends Controller
         }
 
     	$pdf = PDF::loadView('pdf/generate_pdf', [
+            'user' =>$user,
             'estimate' => $estimate,
-            'sum_price' => $sum_price,
             'items' => $items,
+            'sum_price' => $sum_price,
         ]);
 
     	return $pdf->stream();
