@@ -30,8 +30,6 @@ class PDFController extends Controller
             'sum_price' => $sum_price,
         ]);
 
-        return $pdf->stream("dompdf_out.pdf", array("Attachment" => false));
-        exit(0);
-
+        return $pdf->stream();
     }
 }
