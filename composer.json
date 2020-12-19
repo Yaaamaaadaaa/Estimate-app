@@ -7,6 +7,7 @@
     "require": {
         "php": "~7.3.11",
         "barryvdh/laravel-dompdf": "^0.8.7",
+        "carlos-meneses/laravel-mpdf": "^2.1",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0"
