@@ -109,7 +109,5 @@
       </tr>
     </table>
   </div>
-  <script src="{{ asset('js/generate_pdf.js')}}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
 </body>
 </html>
