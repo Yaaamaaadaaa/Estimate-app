@@ -103,7 +103,7 @@
               </button>
             </div>
             <div class="col-md-3">
-              <a href="{{ route('pdf.index', ['estimate' => $estimate->id]) }}">
+              <a href="{{ route('pdf.index', ['estimate' => $estimate->id]) }}" onclick="window.open(this.href, '_blank'); return false;">
                 <button>印刷</button>
               </a>
             </div>
