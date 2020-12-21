@@ -109,7 +109,7 @@
             </div>
             <div class="col-md-3">
               <a href="{{ route('estimates.index') }}">
-                <button >見積一覧に戻る</button>
+                <button onclick="return confirm('保存されていないデータは消えますがよろしいですか？')">見積一覧に戻る</button>
               </a>
             </div>
             <div class="col-md-3">
