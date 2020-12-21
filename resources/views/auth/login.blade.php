@@ -33,9 +33,6 @@
         <div class="text-center" style="padding-top:25px">
           <a href="{{ route('login.guest') }}"><button class="btn btn-dark">ゲストユーザーとしてログイン</button></a>
         </div>
-        <div class="text-center" style="padding-top:25px">
-          <a href="{{ route('password.request') }}"><button class="btn btn-dark">パスワードの変更はこちらから</button></a>
-        </div>
       </div>
     </div>
   </div>
