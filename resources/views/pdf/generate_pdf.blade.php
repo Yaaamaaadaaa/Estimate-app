@@ -40,7 +40,7 @@
     <u><h2>御見積合計金額　¥{{ number_format($sum_price * 1.1) }}-</h2></u>
   </div>
   <div style="float:right">
-    <p>見積日　{{ $estimate['estimated_at'] }}</p>
+    <p>見積日　{{ $estimated_at }}</p>
     <p style="padding-top:25px">〒{{ $user['postal_code'] }}</p>
     <p>{{ $user['address'] }}</p>
     <p>{{ $user['address2'] }}</p>

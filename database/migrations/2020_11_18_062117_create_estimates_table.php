@@ -20,7 +20,7 @@ class CreateEstimatesTable extends Migration
             $table->string('transaction', 100)->nullable();
             $table->string('effectiveness', 100)->nullable();
             $table->string('customer', 100)->nullable();
-            $table->date('deadline_at')->nullable();
+            $table->string('deadline_at', 100)->nullable();
             $table->date('estimated_at')->nullable();
             $table->timestamps();
         });
