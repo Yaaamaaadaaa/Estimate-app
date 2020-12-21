@@ -109,13 +109,14 @@
             </div>
             <div class="col-md-3">
               <a href="{{ route('estimates.index') }}">
-                <button>見積一覧に戻る</button>
+                <button >見積一覧に戻る</button>
               </a>
             </div>
             <div class="col-md-3">
-              <a href="#">
-                <button>削除</button>
-              </a>
+              <form action="{{ route('estimates.delete', ['estimate' => $estimate->id]) }}" method="POST">
+                @csrf
+                <button type="submit" onclick="return confirm('削除します。よろしいですか？')">削除</button>
+              </form>
             </div>
           </div>
         </div>
