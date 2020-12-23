@@ -20,8 +20,13 @@ class EstimateController extends Controller
 
     public function showEditForm(Request $request)
     {
+        $user_id = Auth::id();
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
+
+        if($user_id != $estimate->user_id) {
+            return redirect()->route('estimates.index');
+        }
 
         return view('estimates/edit', [
             'estimate' => $estimate,
