@@ -13,10 +13,10 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        $names = ['ガードレール', 'エムコール', 'サイン'];
-        $units = ['式', '袋', '式'];
-        $quantities = [1, 10, 3];
-        $unit_prices = [50000, 250, 5000];
+        $names = ['ガードレール', 'エムコール', '塩化カルシウム'];
+        $units = ['式', '袋', '袋'];
+        $quantities = [1, 10, 25];
+        $unit_prices = [150000, 5000, 1000];
 
         foreach (array_map(NULL, $names, $units, $quantities, $unit_prices) as [ $name, $unit, $quantity, $unit_price ]) {
             DB::table('items')->insert([

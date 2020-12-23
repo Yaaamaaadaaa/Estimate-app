@@ -15,8 +15,8 @@ class EstimateTableSeeder extends Seeder
     {
         $user = DB::table('users')->first();
 
-        $titles = ['青森', '弘前', '八戸'];
-        $customers = ['株式会社青工', '株式会社角弘', '株式会社吉田産業'];
+        $titles = ['2021年おめでとうセール', '商品見積の件', 'サンプル見積の件'];
+        $customers = ['株式会社XXX', '株式会社YYY', '株式会社ZZZ'];
 
         foreach (array_map(NULL, $titles, $customers) as [ $title, $customer ]) {
             DB::table('estimates')->insert([
