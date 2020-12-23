@@ -11,7 +11,7 @@ class EstimateController extends Controller
 {
     public function index()
     {
-        $estimates = Auth::user()->estimates()->get();
+        $estimates = Auth::user()->estimates()->orderBy('updated_at', 'desc')->get();
 
         return view('estimates/index', [
             'estimates' => $estimates,
@@ -20,8 +20,13 @@ class EstimateController extends Controller
 
     public function showEditForm(Request $request)
     {
+        $user_id = Auth::id();
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
+
+        if($user_id != $estimate->user_id) {
+            return redirect()->route('estimates.index');
+        }
 
         return view('estimates/edit', [
             'estimate' => $estimate,

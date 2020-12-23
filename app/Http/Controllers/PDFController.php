@@ -15,9 +15,13 @@ class PDFController extends Controller
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
         $estimated_at = $estimate->estimated_at;
-        $items = Item::where('estimate_id', $estimate_id)->get();
+        $items = Item::where('estimate_id', $estimate_id)->orderBy('id')->get();
         $item_price = Item::where('estimate_id', $estimate_id)->get(['quantity', 'unit_price']);
         $sum_price = 0;
+
+        if($user->id != $estimate->user_id) {
+            return redirect()->route('estimates.index');
+        }
 
         for($i=0; $i<count($item_price); $i++){
             $calculation_price = $item_price[$i]['quantity'] * $item_price[$i]['unit_price'];
