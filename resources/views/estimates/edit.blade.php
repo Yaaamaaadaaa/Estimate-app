@@ -20,7 +20,7 @@
             <div class="form-group row">
                 <label class="col-md-2 col-form-label">見積日:</label>
                 <div class="col-md-10">
-                <input type="text" name="estimated_at" id="estimated_at" value="{{ $estimate->estimated_at }}" class="form-control">
+                  <input type="text" name="estimated_at" id="estimated_at" value="{{ $estimate->estimated_at }}" class="form-control">
                 </div>
               </div>
               <div class="form-group row">
@@ -32,25 +32,42 @@
               <div class="form-group row">
                 <label class="col-md-2 col-form-label">納入期限:</label>
                 <div class="col-md-10">
-                  <input type="text" name="deadline_at" value="{{ $estimate->deadline_at }}" class="form-control">
+                  <input type="text" list="deadline_list" name="deadline_at" value="{{ $estimate->deadline_at }}" class="form-control">
+                  <datalist id="deadline_list">
+                    @foreach(['御打ち合わせによる', '受注後1週間以内', '受注後1ヶ月以内'] as $value)
+                      <option value="{{ $value }}">
+                    @endforeach
+                  </datalist>
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-2 col-form-label">納入場所:</label>
                 <div class="col-md-10">
-                  <input type="text" name="location" value="{{ $estimate->location }}" class="form-control">
+                  <input type="text" list="location_list" name="location" value="{{ $estimate->location }}" class="form-control">
+                  <datalist id="location_list">
+                    @foreach(['御打ち合わせによる', '貴社指定場所'] as $value)
+                      <option value="{{ $value }}">
+                    @endforeach
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-2 col-form-label">取引方法:</label>
                 <div class="col-md-10">
-                  <input type="text" name="transaction" value="{{ $estimate->transaction }}" class="form-control">
+                  <input type="text" list="transaction_list" name="transaction" value="{{ $estimate->transaction }}" class="form-control">
+                  <datalist id="transaction_list">
+                    @foreach(['御打ち合わせによる', '月末締め、翌月末にて'] as $value)
+                      <option value="{{ $value }}">
+                    @endforeach
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-md-2 col-form-label">有効期限:</label>
                 <div class="col-md-10">
-                  <input type="text" name="effectiveness" value="{{ $estimate->effectiveness }}" class="form-control">
+                  <input type="text" list="effectiveness_list" name="effectiveness" value="{{ $estimate->effectiveness }}" class="form-control">
+                  <datalist id="effectiveness_list">
+                    @foreach(['発行より1ヶ月以内', '発行より3ヶ月以内'] as $value)
+                      <option value="{{ $value }}">
+                    @endforeach
                 </div>
               </div>
             </div>
