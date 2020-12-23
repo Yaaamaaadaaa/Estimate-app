@@ -11,7 +11,7 @@ class EstimateController extends Controller
 {
     public function index()
     {
-        $estimates = Auth::user()->estimates()->get();
+        $estimates = Auth::user()->estimates()->orderBy('updated_at', 'desc')->get();
 
         return view('estimates/index', [
             'estimates' => $estimates,
