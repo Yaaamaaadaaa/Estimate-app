@@ -36,7 +36,7 @@
                 <button type="submit" class="btn btn-dark">送信</button>
               </div>
             </form>
-            <div class="text-center">
+            <div class="text-center" style="padding-top:25px">
               <a href="{{ route('login.guest') }}"><button class="btn btn-dark">ゲストユーザーとしてログイン</button></a>
             </div>
           </div>

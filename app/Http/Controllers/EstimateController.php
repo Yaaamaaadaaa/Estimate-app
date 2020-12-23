@@ -58,4 +58,12 @@ class EstimateController extends Controller
             'estimate' => $estimate->id,
         ]);
     }
+
+    public function delete(Request $request)
+    {
+        $estimate_id = $request->input('estimate');
+        Estimate::find($estimate_id)->delete();
+
+        return redirect()->route('estimates.index');
+    }
 }

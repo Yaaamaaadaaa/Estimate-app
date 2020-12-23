@@ -9,6 +9,7 @@
           <div class="row">
             <div class="col">
               <div class="form-group row">
+                <a>宛先</a>
                 <input type="text" name="customer" value="{{ $estimate->customer }}" class="form-control">
               </div>
               <p>税抜合計金額:<input type="text" class="form-control" :value="totalPrice | priceLocaleString"></p>
@@ -16,6 +17,12 @@
               <p>御見積合計金額:<input type="text" class="form-control" :value="totalPriceWithTax | priceLocaleString"></p>
             </div>
             <div class="col">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">見積日:</label>
+                <div class="col-md-10">
+                <input type="text" name="estimated_at" id="estimated_at" value="{{ $estimate->estimated_at }}" class="form-control">
+                </div>
+              </div>
               <div class="form-group row">
                 <label class="col-md-2 col-form-label">件名:</label>
                 <div class="col-md-10">
@@ -66,7 +73,7 @@
         <tbody>
           <tr v-for="(item, index) in listItems" :key="item.id">
             <td>
-              <input type="text" class="form-control" v-model="item.name" @keyup.enter="append">
+              <input type="text" class="form-control" v-model="item.name">
             </td>
             <td>
               <input type="text" class="form-control" v-model="item.unit">
@@ -75,7 +82,7 @@
               <input type="text" class="form-control" v-model="item.quantity">
             </td>
             <td>
-              <input type="text" class="form-control" v-model="item.unit_price">
+              <input type="text" class="form-control" v-model="item.unit_price" @keyup.enter="append">
             </td>
             <td>
               <input type="text" class="form-control" :value="itemPrice(item.quantity, item.unit_price, index) | priceLocaleString">
@@ -109,13 +116,14 @@
             </div>
             <div class="col-md-3">
               <a href="{{ route('estimates.index') }}">
-                <button>見積一覧に戻る</button>
+                <button onclick="return confirm('保存されていないデータは消えますがよろしいですか？')">見積一覧に戻る</button>
               </a>
             </div>
             <div class="col-md-3">
-              <a href="#">
-                <button>削除</button>
-              </a>
+              <form action="{{ route('estimates.delete', ['estimate' => $estimate->id]) }}" method="POST">
+                @csrf
+                <button type="submit" onclick="return confirm('削除します。よろしいですか？')">削除</button>
+              </form>
             </div>
           </div>
         </div>
@@ -129,4 +137,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/ja.js"></script>
+  <script>
+    flatpickr(document.getElementById('estimated_at'), {
+      locale: 'ja',
+      dateFormat: "Y/m/d"
+    });
+  </script>
 @endsection

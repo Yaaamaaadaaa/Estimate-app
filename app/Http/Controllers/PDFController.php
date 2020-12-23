@@ -14,6 +14,7 @@ class PDFController extends Controller
         $user = Auth::user();
         $estimate_id = $request->input('estimate');
         $estimate = Estimate::find($estimate_id);
+        $estimated_at = $estimate->estimated_at;
         $items = Item::where('estimate_id', $estimate_id)->get();
         $item_price = Item::where('estimate_id', $estimate_id)->get(['quantity', 'unit_price']);
         $sum_price = 0;
@@ -26,6 +27,7 @@ class PDFController extends Controller
     	$pdf = PDF::loadView('pdf/generate_pdf', [
             'user' =>$user,
             'estimate' => $estimate,
+            'estimated_at' => date('Y年m月d日', strtotime($estimated_at)),
             'items' => $items,
             'sum_price' => $sum_price,
         ]);
