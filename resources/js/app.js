@@ -79,7 +79,6 @@ const app = new Vue({
             var remove_items = Object.assign({},this.deleted_items);
             this.deleted_items = [];
             Axios.post('/api/create?' + query, {items: add_items, delete_items: remove_items}).then(response => this.items = response.data);
-
         }
     }
 });
