@@ -99,7 +99,7 @@
               <input type="text" class="form-control" v-model="item.quantity">
             </td>
             <td>
-              <input type="text" class="form-control" v-model="item.unit_price" @keyup.enter="append">
+              <input type="text" class="form-control" v-model="item.unit_price">
             </td>
             <td>
               <input type="text" class="form-control" :value="itemPrice(item.quantity, item.unit_price, index) | priceLocaleString">
